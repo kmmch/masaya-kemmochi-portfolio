@@ -1,0 +1,13 @@
+name: masaya-kemmochi-portfolio
+type: theme
+description: 'masaya-kemmochi-portfolio'
+core_version_requirement: ^8 || ^9 || ^10
+libraries:
+  - masaya-kemmochi-portfolio/global-styles
+  - masaya-kemmochi-portfolio/global-scripts
+base theme: stable9
+regions:
+  header: 'ヘッダー'
+  content: 'コンテンツ'
+  sidebar: 'サイドバー'
+  footer: 'フッター'
