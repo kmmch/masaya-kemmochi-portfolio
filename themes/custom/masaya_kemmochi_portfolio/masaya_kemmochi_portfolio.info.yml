@@ -1,10 +1,10 @@
-name: masaya-kemmochi-portfolio
+name: masaya_kemmochi_portfolio
 type: theme
-description: 'masaya-kemmochi-portfolio'
+description: 'masaya_kemmochi_portfolio'
 core_version_requirement: ^8 || ^9 || ^10
 libraries:
-  - masaya-kemmochi-portfolio/global-styles
-  - masaya-kemmochi-portfolio/global-scripts
+  - masaya_kemmochi_portfolio/global-styles
+  - masaya_kemmochi_portfolio/global-scripts
 base theme: stable9
 regions:
   header: 'ヘッダー'
