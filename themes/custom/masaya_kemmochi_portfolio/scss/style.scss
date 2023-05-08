@@ -414,6 +414,7 @@ main {
     }
 
     &.isTop {
+        display: block;
         & article {
             width: 100%;
         }
