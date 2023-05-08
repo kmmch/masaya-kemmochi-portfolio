@@ -1,4 +1,5 @@
 /sites/default/*
+/sites/default/default.services.yml
 /sites/default/files
 /sites/default/settings.php
 .DS_Store
