@@ -1,0 +1,804 @@
+@use "modules/_variables" as *;
+@use "modules/_mixin" as *;
+@use "modules/_animation" as *;
+
+
+/*========= サイト共通 ===============*/
+h1, h2, h3, h4, h5, h6, p, a, span {
+    font-family: $font-main;
+    color: $color-black;
+}
+
+p {
+    @include rem(16);
+    @include tablet {
+        @include rem(14);
+    }
+}
+
+.noScroll {
+    overflow: hidden;
+}
+
+.wrapper {
+    width: $wrapper-width;
+    margin: 0 auto;
+    @include tablet {
+        width: 100%;
+    }
+}
+
+.section {
+    margin: 20% 0 30% 0;
+
+    &__head {
+        @include tablet {
+            padding-left: 20px;
+        }
+    }
+
+    &__ttl {
+        text-align: start;
+        position: relative;
+        z-index: -1;
+        font-weight: bold;
+        font-family: $font-en;
+        @include rem(130);
+        letter-spacing: $en-letter-spacing;
+        padding: 0 0 10px 0;
+        line-height: 1;
+        @include tablet {
+            font-size: 5rem;
+            @include rem(80);
+        }
+
+        & span {
+            position: absolute;
+            font-weight: normal;
+
+            &.en {
+                left: 2.2em;
+                top: 1.1em;
+                @include rem(40);
+                @include tablet {
+                    @include rem(32);
+                    left: 52px;
+                    top: 47px;
+                }
+            }
+            &.ja {
+                top: 6.8em;
+                left: 5.5em;
+                @include rem(16);
+                @include tablet {
+                    @include rem(16);
+                    top: 83.2px;
+                    left: 0px;
+                }
+            }
+        }
+    }
+
+    &__description {
+        @include rem(18);
+    }
+
+    &__contents {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &__link {
+        text-align: center;
+    }
+}
+
+.btn {
+    display: inline-block;
+    background-color: $color-white;
+    border: 1px solid $color-black;
+    padding: 10px 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: $color-black;
+    text-decoration: none !important;
+
+    &--solid {
+        box-shadow: 2px 2px 0 0 $color-black;
+        border-radius: 7px;
+
+        &:hover {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+    }
+}
+
+.en {
+    font-family: $font-en;
+}
+
+.is {
+    &-sp {
+        display: none;
+        @include tablet {
+            display: block;
+        }
+    }
+}
+
+
+
+/*========= ヘッダー ===============*/
+.header {
+    width:100%;
+    color:$color-white;
+    position: fixed;
+    z-index: 9;
+
+    &.fixed {
+        top: -70px;  
+        font-size: 2em;
+        box-sizing: border-box;
+        transition: .5s; /* アニメーションタイミング */
+
+        &.is-show {
+            top: 0;
+            padding: 20px 0;
+            background: $color-black;
+            @include tablet {
+                padding: 10px 15px;
+            }
+        }
+    }
+
+    &__humburger {
+        width:50%;
+        position: relative;
+    }
+
+    &__ttl {
+        @include rem(38);
+        letter-spacing: $en-letter-spacing;
+        font-weight: bold;
+        color: $color-white;
+        @include tablet {
+            @include rem(22);
+        }
+    }
+}
+
+
+
+/*========= ハンバーガー ===============*/
+.humburger {
+    /*========= ハンバーガーボタン ===============*/
+    &__btn {
+        position: fixed;
+        z-index: 9999;/*ボタンを最前面に*/
+        top: 1px;
+        right: -80px;
+        cursor: pointer;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        transition: all 0.6s;
+        @include tablet {
+            background: none;
+            top: 0;
+            z-index: 99999;
+        }
+        
+        &.is-show {
+            right: 10%;
+            @include tablet {
+                right: 0;
+            }
+        }
+    
+        /*×に変化*/	
+        & span {
+            display: inline-block;
+            transition: all .4s;
+            position: absolute;
+            right: 15px;
+            height: 4px;
+            border-radius: 2px;
+            background-color: $color-white;
+            @include tablet {
+                height:4px;
+            }
+    
+            &:nth-of-type(1) {
+                top: calc(50% - 15px);
+                width: 70%;
+                @include tablet {
+                    top: calc(50% - 22px);
+                }
+            }
+    
+            &:nth-of-type(2) {
+                top: 50%;
+                width: 45%;
+                @include tablet {
+                    top: 43%;
+                }            }
+    
+            &:nth-of-type(3) {
+                top: calc(50% + 15px);
+                width: 30%;    
+                @include tablet {
+                    top: calc(50% + 10px);
+                }        
+            }
+        }
+    
+        &.active {
+            border-radius: 50% 0 0 50%;
+            right: calc($humburgerMenu-width - 1px);
+            @include tablet {
+                right: 0px;
+            }
+
+            & span {
+                &:nth-of-type(1) {
+                    transform: translateY(6px) rotate(-45deg);
+                    width: 60%;
+                    @include tablet {
+                        top: 25px;
+                    }
+                }
+    
+                &:nth-of-type(2) {
+                    opacity: 0;
+                }
+    
+                &:nth-of-type(3){
+                    top: 38px;
+                    transform: translateY(-6px) rotate(45deg);
+                    width: 60%;
+                    
+                }
+            }
+        }
+    
+    }
+
+
+    /*========= ハンバーガーメニュー ===============*/
+    &__menu {
+        /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+        position:fixed;
+        z-index: 9999;
+        /*ナビのスタート位置と形状*/
+        top:0;
+        right: -120%;
+        width: $humburgerMenu-width;
+        height: 100vh;/*ナビの高さ*/
+        background:$color-black;
+        /*動き*/
+        transition: all 0.6s;
+        @include tablet {
+            width: 100%;
+        }
+
+
+        /*アクティブクラスがついたら位置を0に*/
+        &.active {
+            right: 0;
+        
+            /*ナビゲーションの縦スクロール*/
+            & #humburger-bg {
+                /*ナビの数が増えた場合縦スクロール*/
+                position: fixed;
+                z-index: 9999; 
+                width: $humburgerMenu-width;
+                height: 100vh;/*表示する高さ*/
+                overflow: auto;
+                -webkit-overflow-scrolling: touch;
+                @include tablet {
+                    width: 100%;
+                }
+            }
+
+            & ul {
+                left: 30%;
+                @include tablet {
+                    left: 50%;
+                }
+            }
+        }
+
+        /*ナビゲーション*/
+        & ul {
+            /*ナビゲーション天地中央揃え*/
+            position: absolute;
+            z-index: 9999;
+            top:50%;
+            left:40%;
+            transform: translate(-50%,-50%);
+
+            /*リストのレイアウト設定*/
+            & li {
+                list-style: none;
+
+                & a{
+                    color: $color-white;
+                    text-decoration: none;
+                    display: block;
+                    text-transform: uppercase;
+                    letter-spacing: $en-letter-spacing;
+                }
+            }
+        }
+    }
+
+
+    /*========= ハンバーガーメニュー ===============*/
+    &__cover {
+        &.active {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+            background: rgba(3,3,3,.5);
+            display: block;
+        }
+    }
+}
+
+
+/*========= メニュー ===============*/
+.menu {
+    &__list {
+        &--item {
+            padding-bottom:40px;
+            transition: all .3s;
+            &:hover {
+                text-decoration: underline;
+            }
+        @include tablet {
+                text-align: center;
+            }
+
+            &:last-child {
+                padding-bottom: 0px;
+            }
+
+            & span {
+                display: block;
+                color: $color-white;
+
+                &.en {
+                    margin-bottom:5px;
+                    font-weight: bold;
+                    @include rem(32);
+                }
+                &.ja {
+                    @include rem(16);
+                }
+            }
+        }
+    }
+}
+
+
+/*========= メインビジュアル ===============*/
+.mainvisual {
+    background-image: url(https://placehold.jp/1920x1080.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
+    display: flex;
+    align-items: center;
+
+    &__ttl {
+        color: $color-black;
+        @include rem(36);
+        text-align: center;
+    }
+}
+
+
+
+/*========= メインコンテンツ ===============*/
+main {
+    padding: 0% 5%;
+    display: flex;
+    justify-content: space-between;
+    @include tablet {
+        padding: 2%;
+    }
+
+    &.isTop {
+        & article {
+            width: 100%;
+        }
+
+        & aside {
+            display: none;
+        }
+    }
+}
+
+
+article {
+    width: 67%;
+
+    /*========= トップAbout ===============*/
+    #about {
+        & .section__ttl {
+            margin-bottom: 0px;
+        }
+
+        .about {
+            &__contents {
+                display: flex;
+                justify-content: center;
+                @include tablet {
+                    display: block;
+                }
+            }
+            &__img {
+                max-width: 400px;
+                width: 45%;
+                margin-right: 30px;
+                padding: 75px 0 0 0;
+                @include tablet {
+                    width: 100%;
+                    max-width: none;
+                    margin-right: 0;
+                    padding-top:50px;
+                }
+
+                & img {
+                    width: 100%;
+                }
+            }
+            &__txt {
+                margin-left: 30px;
+                width: 45%;
+                padding: 50px 0 0 0;
+                @include tablet {
+                    width: 100%;
+                    margin: 0;
+                }
+
+                & h3 {
+                    @include rem(32);
+                    font-weight: bold;
+                    margin-bottom: 40px;
+                }
+                & p {
+                    margin-bottom: 60px;
+                    line-height: 2;
+                }
+            }
+            &__link {
+                @include tablet {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+
+    /*========= トップService ===============*/
+    #service {
+        & .section__ttl {
+            @include tablet {
+                padding-bottom: 0px;
+                margin-bottom: 35px;
+            }
+
+            & span {
+                &.en {
+                    left: 2em;
+                    @include tablet {
+                        left: 48px;
+                        top: 46px;
+                    }
+                }
+                &.ja {
+                    left: 5em;
+                    @include tablet {
+                        left: 0em;
+                    }
+                }
+            }
+        }
+
+        .service {
+            &__contents{
+                margin: 10% 0;
+                @include tablet {
+                    display: block;
+                    margin: 0 0 10% 0;
+                }
+
+                & li {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 10%;
+                    @include tablet {
+                        display: block;
+                    }
+
+                    &:nth-child(2n+1) {
+                        flex-direction: row-reverse;
+
+                        & .service {
+                            &__head {
+                                margin-left: 10%;
+                            }
+                        }
+                    }
+
+                    &:nth-child(2n) {
+                        & .service {
+                            &__head {
+                                margin-right: 10%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &__head {
+                width: 40%;
+                padding-top:40px;
+                @include tablet {
+                    width: 100%;
+                    margin-left: 0 !important;
+                    text-align: center;
+                    margin-bottom: 10px
+                }
+
+                & h3 {
+                    @include rem(28);
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                }
+                & p {
+                    line-height: 2;
+                }
+            }
+
+            &__body {
+                width: 50%;
+                @include tablet {
+                    width: 100%;
+                }
+
+                & figure {
+                    & img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+
+    /*========= トップWork ===============*/
+    #work {
+        & .section__ttl {
+            @include tablet {
+                padding-bottom: 0px;
+                margin-bottom: 35px;
+            }
+            & span {
+                &.en {
+                    left: 2.5em;
+                    @include tablet {
+                        left: 1.9em;
+                    }
+                }
+                &.ja {
+                    left: 6.3em;
+                    @include tablet {
+                        left: 0em;
+                    }
+                }
+            }
+        }
+
+        .work {
+            &__contents {
+                margin: 10% 0;
+                display: flex;
+                justify-content: center;
+                @include tablet {
+                    margin: 10% 0;
+                    display: block;
+                }
+
+                &--item {
+                    max-width: 370px;
+                    width: 30%;
+                    text-align: center;
+                    border-radius: 10px;
+                    box-shadow: 7px 7px 15px -5px #777777;
+                    @include tablet {
+                        width: 100%;
+                        max-width: none;
+                        max-height: none;
+                        margin-bottom: 8%;
+                    }
+
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        position: relative;
+                        // z-index: -1;
+                        @include tablet {
+                            position: static;
+                            top: 0px;
+                        }
+                    }
+                    &:nth-child(2) {
+                        margin: 0 5%;
+                        top: 50px;
+                        @include tablet {
+                            margin: 0 0 8% 0;
+                        }
+                    }
+                    &:nth-child(3) {
+                        top: 100px;
+                    }
+                }
+            }
+
+            &__img {
+                // margin-bottom: 15px;
+                overflow: hidden;
+                border-radius: 10px 10px 0 0;
+
+                & img {
+                    width: 100%;
+                    border-radius: 10px 10px 0 0;
+                    transition: all 0.3s;
+
+                    &:hover {
+                        transform:scale(1.3);
+                    }
+                }
+            }
+
+            &__description {
+                margin: 15px 0;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+
+
+/*========= モーダル(modaal.jsのカスタマイズ部分) ===============*/
+.modal {
+    display: none;
+
+    &__content {
+        display: flex;
+        justify-content: center;
+        @include tablet {
+            display: block;
+        }
+    }
+
+    &__txt {
+        width: 48%; 
+        @include tablet {
+            width: 100%; 
+            margin-bottom: 75px;
+        }
+
+        & .modal__description {
+            &:nth-child(2) {
+                margin-bottom: 50px;
+            }
+        }
+    }
+    &__ttl {
+        @include rem(24);
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    &__img {
+        width: 48%;
+        @include tablet {
+            width: 100%;
+        }
+
+        & img {
+            width: 100%;
+        }
+    }
+}
+
+.modaal {
+    &-container {
+        width: 90%;
+        max-width:1200px;
+    }
+
+    &-content-container {
+        padding: 60px;
+        @include tablet {
+            padding: 45px 30px;
+        }
+    }
+
+    &-close {
+        position: absolute;
+        @include tablet {
+            right: 0px;
+            top: 0px;
+        }
+
+        &:after, 
+        &:before {
+            background: $color-black;
+        }
+
+        &:focus {
+            &:after,
+            &:before {
+                background: $color-black;
+            }
+        }
+
+        &:hover {
+            &:after,
+            &:before {
+                background: $color-black;
+            }
+        }
+    }
+}
+
+
+aside {
+    width: 27%;
+    padding: 10% 0;
+    border: 1px solid $color-black;
+}
+
+
+/*========= フッター ===============*/
+.footer {
+    & .cta {
+        padding: 5% 0;
+
+        &__ttl {
+            @include rem(32);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        &__link {
+            margin: 3% 0;
+            text-align: center;
+        }
+    }
+
+    & .copyright {
+        font-family: $font-en;
+        background: $color-black;
+        text-align: center;
+        padding: 20px;
+
+        & p {
+            color: $color-white;
+        }
+    }
+}
+
+

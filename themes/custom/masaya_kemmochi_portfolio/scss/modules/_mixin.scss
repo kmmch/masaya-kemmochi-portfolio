@@ -1,0 +1,27 @@
+@use "_variables" as *;
+
+
+
+/*========= タブレット向けスタイル ===============*/
+@mixin tablet {
+    @media screen and (max-width: $tb) {
+        @content;
+    }
+}
+
+
+
+/*========= スマホ向けスタイル ===============*/
+@mixin mobile {
+    @media screen and (max-width: $mb) {
+        @content;
+    }
+}
+
+
+
+/*========= フォントサイズ定義 ===============*/
+@mixin rem($size) {
+    font-size: $size + px; /*IE9以前に対応する*/
+    font-size: calc($size / 16) + rem;
+}
