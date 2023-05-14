@@ -21,6 +21,7 @@ class ComposerStaticInit4b6344e297196cc4b3da3288d1693c52
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2f69d3914119f042cca9e44442d5ce95' => __DIR__ . '/../..' . '/core/includes/bootstrap.inc',
+        '3917c79c5052b270641b5a200963dbc2' => __DIR__ . '/..' . '/kint-php/kint/init.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -69,6 +70,10 @@ class ComposerStaticInit4b6344e297196cc4b3da3288d1693c52
         'M' => 
         array (
             'Masterminds\\' => 12,
+        ),
+        'K' => 
+        array (
+            'Kint\\' => 5,
         ),
         'G' => 
         array (
@@ -241,6 +246,10 @@ class ComposerStaticInit4b6344e297196cc4b3da3288d1693c52
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
         ),
+        'Kint\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kint-php/kint/src',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -291,8 +300,8 @@ class ComposerStaticInit4b6344e297196cc4b3da3288d1693c52
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/event-manager/src',
-            1 => __DIR__ . '/..' . '/doctrine/common/src',
+            0 => __DIR__ . '/..' . '/doctrine/common/src',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
         ),
         'Composer\\Semver\\' => 
         array (
