@@ -5,6 +5,7 @@ global-styles:
       css/vendor/destyle.css: {}
       css/vendor/modaal.min.css: {}
       css/style.css: {}
+      css/core/messages.css: {}
 global-scripts:
   version: 1.x
   js:
