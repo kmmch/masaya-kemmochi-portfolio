@@ -45,38 +45,22 @@
 #}
 <div class="layout-container">
 
-  <header id="header--fixed" class="header fixed" role="banner">
+  {% if page.header %}
+  <header id="header--fixed" class="header fixed is-show" role="banner">
     {{ page.header }}
   </header>
+  {% endif %}
 
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
-
-  {{ page.breadcrumb }}
-
-  {{ page.highlighted }}
-
-  {{ page.help }}
+  {% if page.mainvisual %}
+    {{ page.mainvisual }}
+  {% endif %}
 
   <main class="isTop" role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="layout-content">
+    <article>
+    {% if page.content %}
       {{ page.content }}
-    </div>{# /.layout-content #}
-
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
     {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
+    <article>
   </main>
 
   {% if page.footer %}

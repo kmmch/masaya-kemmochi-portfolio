@@ -10,5 +10,5 @@ global-scripts:
   js:
     js/vendor/jquery-3.4.1.min.js: {}
     js/vendor/modaal.min.js: {}
-    js/modules/animation.js: {}
     js/index.js: {}
+    js/modules/animation.js: {}

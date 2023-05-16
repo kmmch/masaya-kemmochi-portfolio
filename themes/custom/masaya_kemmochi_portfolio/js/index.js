@@ -23,6 +23,7 @@ window.onload = () => {
 
 
 
+// 特定の高さまでスクロールしたらヘッダーを表示する
 (function() {
 
     // 固定化ヘッダー
@@ -79,6 +80,23 @@ window.onload = () => {
         showFixedElements();
 
     });
+
+}());
+
+
+
+// 管理メニューがある場合はヘッダーに特定のクラスを付与する
+(function(){
+
+    const adminToolbar = document.getElementById('toolbar-bar');
+
+    if(adminToolbar) {
+        const fixedHeader = document.getElementById('header--fixed');
+        fixedHeader.classList.add('is-admin');
+
+        const humburgerBtn = document.getElementById('humburger-btn');
+        humburgerBtn.classList.add('is-admin');
+    }
 
 }());
 

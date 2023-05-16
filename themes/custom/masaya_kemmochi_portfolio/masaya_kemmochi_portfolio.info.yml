@@ -8,6 +8,7 @@ libraries:
 base theme: stable9
 regions:
   header: 'ヘッダー'
+  mainvisual: 'メインビジュアル'
   content: 'コンテンツ'
   sidebar: 'サイドバー'
   footer: 'フッター'
