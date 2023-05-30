@@ -147,6 +147,57 @@ p {
     }
 }
 
+.scrolldown {
+    /*描画位置※位置は適宜調整してください*/
+	position:absolute;
+	bottom:1%;
+	right:50%;
+    /*矢印の動き1秒かけて永遠にループ*/
+	animation: arrowmove 1s ease-in-out infinite;
+
+    & span{
+        /*描画位置*/
+        position: absolute;
+        left:-25px;
+        bottom: 75px;
+        /*テキストの形状*/
+        color: $color-black;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        /*縦書き設定*/
+        -ms-writing-mode: tb-rl;
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+    }
+    &:before {
+        content: "";
+        /*描画位置*/
+        position: absolute;
+        bottom:75px;
+        right: -6px;
+        /*矢印の形状*/
+        width: 2px;
+        height: 20px;
+        background: $color-black;
+        transform: skewX(-31deg);
+    }
+    &:after{
+        content:"";
+        /*描画位置*/
+        position: absolute;
+        bottom:75px;
+        right:0;
+        /*矢印の形状*/
+        width: 2px;
+        height: 50px;
+        background:$color-black;
+    }    
+}
+@keyframes arrowmove{
+    0%{bottom:1%;}
+    50%{bottom:3%;}
+    100%{bottom:1%;}
+}
 
 
 /*========= ヘッダー ===============*/
@@ -211,6 +262,8 @@ p {
             background: none;
             top: 0;
             z-index: 99999;
+            width: 40px;
+            height: 40px;
         }
         
         &.is-show {
@@ -241,7 +294,9 @@ p {
                 top: calc(50% - 15px);
                 width: 70%;
                 @include tablet {
-                    top: calc(50% - 22px);
+                    top: calc(50% - 10px);
+                    width: 80%;
+                    // top: calc(50% - 22px);
                 }
             }
     
@@ -249,8 +304,11 @@ p {
                 top: 50%;
                 width: 45%;
                 @include tablet {
-                    top: 43%;
-                }            }
+                    // top: 43%;
+                    width: 50%;
+                    top: 50%;
+                }            
+            }
     
             &:nth-of-type(3) {
                 top: calc(50% + 15px);
@@ -273,7 +331,9 @@ p {
                     transform: translateY(6px) rotate(-45deg);
                     width: 60%;
                     @include tablet {
-                        top: 25px;
+                        // top: 25px;
+                        top: calc(50% - 3px);
+                        width: 80%;
                     }
                 }
     
@@ -285,6 +345,10 @@ p {
                     top: 38px;
                     transform: translateY(-6px) rotate(45deg);
                     width: 60%;
+                    @include tablet {
+                        top: calc(50% + 10px);
+                        width: 80%;
+                    }
                     
                 }
             }
@@ -415,17 +479,26 @@ p {
 
 /*========= メインビジュアル ===============*/
 .mainvisual {
-    background-image: url(https://placehold.jp/1920x1080.png);
+    // background-image: url(https://placehold.jp/1920x1080.png);
     background-repeat: no-repeat;
     background-size: cover;
     height:100vh;
     display: flex;
     align-items: center;
 
-    &__ttl {
+    & .wrapper {
+        margin-bottom: 15%;
+        @include tablet{
+            margin-bottom: 35%;
+        }
+    }
+
+    &__ttl p {
         color: $color-black;
         @include rem(36);
         text-align: center;
+        font-family: "Oswald",sans-serif;
+        font-weight: bold;
     }
 }
 
@@ -696,7 +769,7 @@ article {
             }
 
             &__description {
-                margin: 15px 0;
+                padding: 15px 0;
                 &:hover {
                     text-decoration: underline;
                 }
