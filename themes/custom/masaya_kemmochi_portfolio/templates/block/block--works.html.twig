@@ -39,8 +39,10 @@
       </h2>
     </div>
     <div class="section__body">
-      <div class="section__contents about about__contents">
-        {{content.body}}
+      <div class="section__contents">
+        {% if drupal_view_result('works_list','sitetop') | length %}
+          {{ drupal_view('works_list','sitetop') }}
+        {% endif %}
       </div>
       {% if content.field_link[0] %}
       {% set link_title = content.field_link[0]['#title'] %}

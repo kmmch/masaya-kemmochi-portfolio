@@ -786,7 +786,7 @@ article {
 
     &__content {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         @include tablet {
             display: block;
         }
