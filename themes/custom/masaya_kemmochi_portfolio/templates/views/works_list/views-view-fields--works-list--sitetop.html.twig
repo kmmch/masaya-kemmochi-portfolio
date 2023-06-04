@@ -64,15 +64,15 @@
         <figure class="work__img">
             <img src="{{ image }}" alt="">
         </figure>
-        <p class="work__description">{{ title }}</p>    
+        <p class="work__description">{{ title | raw }}</p>    
     </a>
     <div id="work{{ nid }}" class="modal">
         <div class="modal__content">
             <div class="modal__txt">
-                <h3 class="modal__ttl">{{ title }}</h3>
-                <div class="modal__description">{{ description }}</div>
+                <h3 class="modal__ttl">{{ title | raw }}</h3>
+                <div class="modal__description">{{ description | raw }}</div>
                 <h3 class="modal__ttl">使用技術など</h3>
-                <div class="modal__description">{{ technology }}</div>
+                <div class="modal__description">{{ technology | raw }}</div>
             </div>
             <figure class="modal__img">
                 <img src="{{ image }}" alt="">
